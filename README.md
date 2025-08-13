@@ -1,10 +1,7 @@
-# Venus-Os-rasberry-pi-4
-Guía de Integración del Módulo de Comunicación RemoteGPIO
-
 Este documento describe la arquitectura de RemoteGPIO y explica cómo desarrollar un módulo de comunicación
-personalizado para integrar cualquier dispositivo de E/S con Venus OS de Victron. Información extraida de: https://community.victronenergy.com/t/remotegpio-v4-0-0-release-beta-for-now/41652
+personalizado para integrar cualquier dispositivo de E/S con Venus OS de Victron.
 
-1. Arquitectura del Sistema
+#1. Arquitectura del Sistema
 RemoteGPIO se divide en dos partes para garantizar estabilidad y modularidad:
 1.1 Motor Central (dbus-rgpio.py)
  Servicio persistente que no conoce protocolos de hardware específicos.
@@ -14,14 +11,14 @@ o Crear y administrar servicios D-Bus (com.victronenergy.switch.*).
 o Crear /run/io-ext/ para el descubrimiento de entradas digitales.
 o Proporcionar una API MQTT interna para comunicación con módulos.
 
-1.2 Módulos de Comunicación (ej. dingtian_mqtt_bridge.py)
+#1.2 Módulos de Comunicación (ej. dingtian_mqtt_bridge.py)
  Scripts independientes que se ejecutan como servicios.
  Funciones:
 o Comunicar con un dispositivo específico (MQTT, Modbus, etc.).
 o Traducir estados del hardware a llamadas de la API del Motor Central.
 o Traducir comandos del Motor Central a comandos de hardware.
 
-2. Estructura de Archivos y Gestión de Servicios
+#2. Estructura de Archivos y Gestión de Servicios
 A. Ubicación de archivos
 Archivo Ruta
 Script de módulo /data/RemoteGPIO/modules/
@@ -45,7 +42,7 @@ Cuando el usuario alterna “Relay4” en la GUI:
 svc -u /service/my_new_bridge # iniciar
 svc -d /service/my_new_bridge # detener
 
-3. API Interna (MQTT)
+#3. API Interna (MQTT)
 Toda comunicación con el Motor Central se realiza mediante MQTT en localhost:1883.
 A. Registro y Desregistro de Dispositivos
 Registro:
